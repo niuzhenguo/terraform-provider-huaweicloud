@@ -126,12 +126,12 @@ func resourceOpenGaussInstance() *schema.Resource {
 							Required: true,
 							ForceNew: true,
 							ValidateFunc: validation.StringInSlice([]string{
-								"GaussDB(openGauss)",
+								"GaussDB(for openGauss)",
 							}, true),
 						},
 						"version": {
 							Type:     schema.TypeString,
-							Required: true,
+							Optional: true,
 							ForceNew: true,
 						},
 					},
@@ -285,8 +285,7 @@ func resourceOpenGaussDataStore(d *schema.ResourceData) instances.DataStoreOpt {
 		db.Type = datastore["engine"].(string)
 		db.Version = datastore["version"].(string)
 	} else {
-		db.Type = "GaussDB(openGauss)"
-		db.Version = "1.1"
+		db.Type = "GaussDB(for openGauss)"
 	}
 	return db
 }
